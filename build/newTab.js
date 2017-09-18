@@ -11387,12 +11387,6 @@ var styles = {
     space: {
         margin: "10px",
         padding: "10px"
-    },
-    button: {
-        width: "150px",
-        maxWidth: "150px",
-        position: "absolute",
-        bottom: "0"
     }
 };
 
