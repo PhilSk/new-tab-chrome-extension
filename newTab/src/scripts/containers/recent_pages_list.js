@@ -13,8 +13,24 @@ class RecentPagesList extends Component {
         }
     }
 
+    componentWillReciveProps(props) {
+        this.setState({ data: props });
+    }
+
+    componentDidUpdate() {
+        if (this.props.pages) {
+            this.bindSortable();
+        }
+    }
+
     componentDidMount() {
-        Sortable.create(bar, {
+        if (this.props.pages) {
+            this.bindSortable();
+        }
+    }
+
+    bindSortable() {
+        Sortable.create(pages_list, {
             onEnd: function(evt) {
                 saveState({
                     pages: move(loadState().pages, evt.oldIndex, evt.newIndex)
@@ -24,7 +40,6 @@ class RecentPagesList extends Component {
     }
 
     renderPage(page) {
-        console.log(page);
         return (
             <div
                 key={page.id}
@@ -56,7 +71,7 @@ class RecentPagesList extends Component {
         }
         return (
             <div className="container">
-                <div id="bar" className="row" style={styles.row}>
+                <div id="pages_list" className="row" style={styles.row}>
                     {this.props.pages.map(this.renderPage)}
                 </div>
             </div>

@@ -11276,9 +11276,28 @@ var RecentPagesList = function (_Component) {
             }
         }
     }, {
+        key: "componentWillReciveProps",
+        value: function componentWillReciveProps(props) {
+            this.setState({ data: props });
+        }
+    }, {
+        key: "componentDidUpdate",
+        value: function componentDidUpdate() {
+            if (this.props.pages) {
+                this.bindSortable();
+            }
+        }
+    }, {
         key: "componentDidMount",
         value: function componentDidMount() {
-            _sortablejs2.default.create(bar, {
+            if (this.props.pages) {
+                this.bindSortable();
+            }
+        }
+    }, {
+        key: "bindSortable",
+        value: function bindSortable() {
+            _sortablejs2.default.create(pages_list, {
                 onEnd: function onEnd(evt) {
                     (0, _local_storage.saveState)({
                         pages: (0, _lodashMove2.default)((0, _local_storage.loadState)().pages, evt.oldIndex, evt.newIndex)
@@ -11289,7 +11308,6 @@ var RecentPagesList = function (_Component) {
     }, {
         key: "renderPage",
         value: function renderPage(page) {
-            console.log(page);
             return _react2.default.createElement(
                 "div",
                 {
@@ -11329,7 +11347,7 @@ var RecentPagesList = function (_Component) {
                 { className: "container" },
                 _react2.default.createElement(
                     "div",
-                    { id: "bar", className: "row", style: styles.row },
+                    { id: "pages_list", className: "row", style: styles.row },
                     this.props.pages.map(this.renderPage)
                 )
             );
