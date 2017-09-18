@@ -1,0 +1,2 @@
+export const FETCH_RECENT_PAGES = "FETCH_RECENT_PAGES";
+export const PAGE_SELECTED = "PAGE_SELECTED";
